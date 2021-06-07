@@ -1,10 +1,11 @@
 import React from 'react'
+import ToDo from './ToDo'
 
 const App = () => {
   return (
     <div>
-      <h1>ToDo</h1>
-      <h1>Not Changed</h1>
+      <h1 id = "title">ToDo</h1>
+      <ToDo/>
     </div>
   )
 }
