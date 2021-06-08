@@ -3,7 +3,7 @@ import ToDo from './ToDo'
 
 const App = () => {
   return (
-    <div>
+    <div id = "background">
       <h1 id = "title">ToDo</h1>
       <ToDo/>
     </div>

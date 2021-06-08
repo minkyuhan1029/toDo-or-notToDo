@@ -67,17 +67,23 @@ class ToDo extends React.Component{
     const filterButtons = Object.keys(filterOpt).map(filter => (<FilterButton key={filter} name={filter} setFilter={this.setFilter} pressed={filter===this.state.filter}/>))
     return(
       <div className='container'>
-        <button type='button' className='chevron' onClick= {()=>this.handleAllDone()}> Chevron </button>
-        <input type='text' value = {this.state.content} onChange = {this.handleChange} onKeyDown = {this.handleEnter}/>
+        <div className = 'chevron-container'>
+        <button type='button' className='button-chevron' onClick= {()=>this.handleAllDone()}></button>
+        <input
+        className = "input-add"
+        type='text' value = {this.state.content} onChange = {this.handleChange} onKeyDown = {this.handleEnter}/>
+        </div>
         <div className='todo-list'>
           {this.props.errand.all.filter(filterOpt[this.state.filter]).map((errand) => <SingleToDo key = {errand.id} err={errand} handleDone = {this.handleDone} handleDelete = {this.handleDelete} updateErrand={this.props.updateErrand}/> )}
         </div>
-        <div id = 'counter'>{this.numOfTasks()} {this.numOfTasks() > 1 ? 'errands' : 'errand'} left</div>
+        <div className="bottom-container">
+        <div id = 'counter'>{this.numOfTasks()} {this.numOfTasks() > 1 ? 'items' : 'item'} left</div>
         <div className ='filters'>
           {filterButtons}
         </div>
-        <div className='clear-completed'>
-          {this.props.errand.all.filter((errand)=> errand.isDone).length > 0 ? <button type="button" onClick={()=>this.props.errand.all.filter((errand)=>errand.isDone).map((errand)=>this.handleDelete(errand.id))}>Contains</button> : <div> </div>}
+        <div className='button-clear-completed'>
+          {this.props.errand.all.filter((errand)=> errand.isDone).length > 0 ? <button type="button" onClick={()=>this.props.errand.all.filter((errand)=>errand.isDone).map((errand)=>this.handleDelete(errand.id))}>Clear Completed</button> : <button className ="button-invisible"> </button>}
+        </div>
         </div>
       </div>
     )
